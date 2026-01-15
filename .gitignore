@@ -1,0 +1,7 @@
+service_finder.db
+*.db
+.DS_Store
+__pycache__/
+*.pyc
+venv/
+.env
