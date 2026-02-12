@@ -54,25 +54,26 @@ def setup_database():
     );
     """)
     
-    # 2. Check if User exists. If not, INSERT (Reset logic).
+    # 2. Check if User exists. If not, INSERT (user will customize).
     cursor.execute("SELECT count(*) FROM User_Profile")
     if cursor.fetchone()[0] == 0:
         print("⚙️ Initializing System... Creating User Profile.")
+        print("   (Edit User_Profile in DB or re-run with --init to customize.)")
         cursor.execute("""
             INSERT INTO User_Profile (full_name, total_hours_required, deadline_date) 
-            VALUES ('Timothy Wheels', 40.0, '2026-01-17')
+            VALUES ('Your Name', 40.0, '2026-06-01')
         """)
         
-    # 3. Check if Agencies exist. If not, INSERT.
+    # 3. Check if Agencies exist. If not, INSERT generic examples.
     cursor.execute("SELECT count(*) FROM Agencies")
     if cursor.fetchone()[0] == 0:
-        print("⚙️ Initializing System... Adding Agencies.")
+        print("⚙️ Initializing System... Adding sample agencies.")
         cursor.execute("""
         INSERT INTO Agencies (agency_name, category, location_address, contact_name) 
         VALUES 
-            ('Atlanta Community Food Bank', 'Food Service', '732 Joseph E. Lowery Blvd', 'Sarah J.'),
-            ('DeKalb County Library', 'Education', '215 Sycamore St', 'Mr. Henderson'),
-            ('Trees Atlanta', 'Environment', '225 Chester Ave', 'Marcus G.')
+            ('Local Food Bank', 'Food Service', 'Address', 'Contact'),
+            ('Community Library', 'Education', 'Address', 'Contact'),
+            ('Environmental Nonprofit', 'Environment', 'Address', 'Contact')
         """)
         
     conn.commit()

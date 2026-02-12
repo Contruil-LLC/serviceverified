@@ -13,11 +13,14 @@ ServiceVerified is the third pillar of the Contruil ecosystem — the credential
 Court compliance tracking made auditable. Log service hours with immutable SQLite, calculate burn rates, export professional timesheets.
 
 ```bash
-# Log service hours
-python cli/service_finder.py add "Community Center" 4.0 "2026-01-15"
+# Log hours: agency_id|hours|description|date(optional)
+python cli/service_finder.py --log "1|4.0|Community Center volunteer|2026-01-15"
+
+# Show burn rate status
+python cli/service_finder.py --status
 
 # Generate compliance report
-python cli/service_finder.py report
+python cli/service_finder.py --report
 ```
 
 - **For:** Individuals managing court-ordered community service
