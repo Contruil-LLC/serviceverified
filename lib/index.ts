@@ -17,3 +17,9 @@ export {
   serviceVerifiedDid,
   isServiceVerifiedCredential,
 } from "./types/credential";
+
+export { generateDid, generateCredentialId } from "./did/generate";
+export {
+  CredentialBuilder,
+  createCredential,
+} from "./credential/builder";
