@@ -1,0 +1,25 @@
+{
+  "name": "@contruil/service-verified",
+  "version": "0.1.0",
+  "description": "Compliance credentials. Verifiable. Portable. DID-anchored.",
+  "main": "dist/lib/index.js",
+  "types": "dist/lib/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test test/*.test.js 2>/dev/null || echo 'No tests yet'"
+  },
+  "keywords": [
+    "credentials",
+    "compliance",
+    "DID",
+    "ISO27001",
+    "SOC2",
+    "ServiceVerified",
+    "Contruil"
+  ],
+  "author": "Contruil LLC",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contruil.com/schemas/service-verified/v1.0.json",
+  "title": "ServiceVerified Credential",
+  "description": "Compliance credential schema v1.0 — DID-anchored, verifiable",
+  "type": "object",
+  "required": ["schema_version", "did", "id", "status", "source", "created_at", "updated_at", "evidence"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0",
+      "description": "Schema version for evolution"
+    },
+    "did": {
+      "type": "string",
+      "pattern": "^did:tw:serviceverified:[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "description": "DID: did:tw:serviceverified:<uuid>"
+    },
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Credential ID (UUID v4)"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "approved", "rejected", "expired", "revoked"],
+      "description": "State machine status"
+    },
+    "source": {
+      "type": "string",
+      "description": "Workflow that produced this credential",
+      "examples": ["servicepath.leadership-training.negotiation", "servicepath.compliance.iso27001", "servicepath.compliance.soc2"]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 creation timestamp"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 last update timestamp"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Optional expiration for time-bound credentials"
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["type", "payload"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Evidence type for parsing",
+          "examples": ["iso27001_attestation", "soc2_report", "negotiation_session"]
+        },
+        "payload": {
+          "type": "object",
+          "description": "Structured evidence payload"
+        }
+      }
+    }
+  }
+}
