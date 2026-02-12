@@ -6,13 +6,43 @@ ServiceVerified is the third pillar of the Contruil ecosystem — the credential
 
 ---
 
-## Vision
+## Two Parts
 
-| Pillar | Domain | Purpose |
-|--------|--------|---------|
-| **Virgil OS** | Identity, Navigation, Sovereignty | Decision framework and cognitive architecture |
-| **CYW OS** | Infrastructure, Governance, Schemas | Control Your World operating system |
-| **ServiceVerified** | Compliance, Verification, Certificates | Credential issuance and verification |
+### 1. Python CLI — Compliance Audit Tool
+
+Court compliance tracking made auditable. Log service hours with immutable SQLite, calculate burn rates, export professional timesheets.
+
+```bash
+# Log service hours
+python cli/service_finder.py add "Community Center" 4.0 "2026-01-15"
+
+# Generate compliance report
+python cli/service_finder.py report
+```
+
+- **For:** Individuals managing court-ordered community service
+- **Features:** Tamper-proof logging, burn rate analysis, court-ready timesheets
+- **Tech:** Python 3.x, SQLite, append-only audit trail
+
+### 2. TypeScript Foundation — Credential Layer
+
+DID-anchored credentials for enterprise compliance (ISO 27001, SOC 2, HIPAA).
+
+```bash
+npm install
+npm run build
+```
+
+```typescript
+import { serviceVerifiedDid } from "@contruil/service-verified";
+
+const did = serviceVerifiedDid("550e8400-e29b-41d4-a716-446655440000");
+// => "did:tw:serviceverified:550e8400-e29b-41d4-a716-446655440000"
+```
+
+- **For:** ServicePath, Contruil workflows, enterprise credential issuance
+- **Features:** Schema, types, DID spec, NDJSON export
+- **Tech:** TypeScript, JSON Schema
 
 ---
 
@@ -22,57 +52,33 @@ ServiceVerified is the third pillar of the Contruil ecosystem — the credential
 did:tw:serviceverified:<uuid>
 ```
 
-- `tw` — Contruil namespace
-- `serviceverified` — method
-- `<uuid>` — credential ID (v4 UUID)
-
-See [docs/DID-SPECIFICATION.md](docs/DID-SPECIFICATION.md) for the full specification.
+See [docs/DID-SPECIFICATION.md](docs/DID-SPECIFICATION.md).
 
 ---
 
-## Quick Start
-
-```bash
-npm install
-npm run build
-```
-
-```typescript
-import { serviceVerifiedDid, type ServiceVerifiedCredential } from "@contruil/service-verified";
-
-const did = serviceVerifiedDid("550e8400-e29b-41d4-a716-446655440000");
-// => "did:tw:serviceverified:550e8400-e29b-41d4-a716-446655440000"
-```
-
----
-
-## Schema
-
-Credentials follow the [ServiceVerified v1.0 schema](schemas/service-verified-v1.0.schema.json). Each credential includes:
-
-- `did` — DID identifier
-- `status` — pending | approved | rejected | expired | revoked
-- `source` — workflow that produced the credential
-- `evidence` — structured payload (ISO 27001, SOC 2, HIPAA, etc.)
-- `created_at` / `updated_at` — ISO 8601 timestamps
-
----
-
-## Integration
-
-ServiceVerified is produced by **ServicePath** (contruil.com). Workflows collect evidence, move through a state machine, and emit credentials anchored to DIDs.
+## Repository Structure
 
 ```
-ServicePath (workflow engine)
-    │
-    ├── collects evidence
-    ├── state machine
-    ├── DID anchoring
-    │
-    └── produces ──▶ ServiceVerified Credential
+ServiceVerified/
+├── README.md
+├── package.json
+├── tsconfig.json
+├── cli/
+│   └── service_finder.py        # Python compliance CLI
+├── schemas/
+│   └── service-verified-v1.0.schema.json
+├── lib/
+│   ├── index.ts
+│   └── types/
+│       └── credential.ts
+├── docs/
+│   ├── DID-SPECIFICATION.md
+│   └── INTEGRATION-ROADMAP.md
+└── examples/
+    ├── iso27001-full.json
+    ├── credential.ndjson
+    └── sample_report.txt
 ```
-
-See [docs/INTEGRATION-ROADMAP.md](docs/INTEGRATION-ROADMAP.md) for the 6-phase integration plan.
 
 ---
 

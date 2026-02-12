@@ -1,7 +1,26 @@
+# Dependencies
 node_modules/
+venv/
+
+# Build
 dist/
-*.log
-.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Database
+*.db
+service_finder.db
+
+# Environment
 .env
 .env.local
 .env.*.local
+
+# OS
+.DS_Store
+
+# Logs
+*.log
