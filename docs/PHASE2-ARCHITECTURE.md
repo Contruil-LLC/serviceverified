@@ -66,3 +66,5 @@ Verification is **6 independent checks**. Valid signature ≠ valid credential.
 - [API Quick Reference](./API-QUICK-REFERENCE.md)
 - [Integration Roadmap](./INTEGRATION-ROADMAP.md)
 - [DID Specification](./DID-SPECIFICATION.md)
+- [DID Resolution Strategy](./DID-RESOLUTION-STRATEGY.md) — Options 1–3, implementation code
+- [Phase 2 Build Order](./PHASE2-BUILD-ORDER.md) — Canonicalization, envelope, sign/verify, multi-axis
