@@ -16,14 +16,18 @@
 
 ## Phase 2: Core Implementation
 
+See [Phase 2 Architecture](./PHASE2-ARCHITECTURE.md) for locked decisions.
+
 | Task | Description |
 |------|--------------|
-| 2.1 | DID generation — `lib/did/generate.ts` |
-| 2.2 | Credential builder — `lib/credential/builder.ts` |
+| 2.1 | DID generation — `lib/did/generate.ts` ✅ |
+| 2.2 | Credential builder — `lib/credential/builder.ts` ✅ |
 | 2.3 | Validation — JSON Schema + type guards |
-| 2.4 | Signature generation — `lib/crypto/sign.ts` (optional) |
-| 2.5 | NDJSON serialization |
-| 2.6 | Credential issuance — `lib/issuance/issue.ts` |
+| 2.4 | Canonicalization (RFC 8785) + signature envelope |
+| 2.5 | Sign/Verify with Ed25519 |
+| 2.6 | Multi-axis verification API |
+| 2.7 | NDJSON serialization |
+| 2.8 | Credential issuance — `lib/issuance/issue.ts` |
 
 ---
 

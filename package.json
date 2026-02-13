@@ -6,7 +6,9 @@
   "types": "dist/lib/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "test": "node --test test/*.test.js 2>/dev/null || echo 'No tests yet'"
+    "test": "node --test test/*.test.js 2>/dev/null || echo 'No tests yet'",
+    "demo": "node examples/usage-demo.js",
+    "demo:full": "node examples/usage-demo-improved.js"
   },
   "keywords": [
     "credentials",

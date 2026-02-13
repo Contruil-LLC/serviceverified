@@ -20,6 +20,13 @@ export {
 
 export { generateDid, generateCredentialId } from "./did/generate";
 export {
+  parseDid,
+  isValidDid,
+  extractUuid,
+  formatDidForDisplay,
+  type ParsedDid,
+} from "./did/parse";
+export {
   CredentialBuilder,
   createCredential,
 } from "./credential/builder";

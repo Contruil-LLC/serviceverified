@@ -37,14 +37,20 @@ npm run build
 ```
 
 ```typescript
-import { serviceVerifiedDid } from "@contruil/service-verified";
+import { createCredential, generateDid, extractUuid } from "@contruil/service-verified";
 
-const did = serviceVerifiedDid("550e8400-e29b-41d4-a716-446655440000");
-// => "did:tw:serviceverified:550e8400-e29b-41d4-a716-446655440000"
+const did = generateDid();
+const credential = createCredential(extractUuid(did))
+  .withStatus("approved")
+  .withSource("servicepath.compliance.iso27001")
+  .withEvidence({ type: "iso27001_attestation", payload: { scope: "ISMS" } })
+  .build();
 ```
 
+See [API Quick Reference](docs/API-QUICK-REFERENCE.md) for complete documentation.
+
 - **For:** ServicePath, Contruil workflows, enterprise credential issuance
-- **Features:** Schema, types, DID spec, NDJSON export
+- **Features:** Schema, types, DID spec, parse utilities, NDJSON export
 - **Tech:** TypeScript, JSON Schema
 
 ---
@@ -72,12 +78,20 @@ ServiceVerified/
 │   └── service-verified-v1.0.schema.json
 ├── lib/
 │   ├── index.ts
+│   ├── did/
+│   │   ├── generate.ts
+│   │   └── parse.ts
+│   ├── credential/
+│   │   └── builder.ts
 │   └── types/
 │       └── credential.ts
 ├── docs/
 │   ├── DID-SPECIFICATION.md
-│   └── INTEGRATION-ROADMAP.md
+│   ├── INTEGRATION-ROADMAP.md
+│   └── API-QUICK-REFERENCE.md
 └── examples/
+    ├── usage-demo.js
+    ├── usage-demo-improved.js
     ├── iso27001-full.json
     ├── credential.ndjson
     └── sample_report.txt
